@@ -1,0 +1,4 @@
+Hello {{user.username}}
+Welcome to Digital Dialogue.
+You have succesfully signed up.
+Please enjoy the different blogs on all your favourite topics.

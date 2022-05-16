@@ -7,6 +7,13 @@ class Config:
     SECRET_KEY = 'h4TvVu03'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wachira:Lydiah007@localhost/blogs'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
+
+    #  email configurations
+    MAIL_SERVER = 'smtp.googlemail.com'
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = 'oneminutepitches@gmail.com'
+    MAIL_PASSWORD = 'wakadinali'
     
     @staticmethod
     def init_app(app):
