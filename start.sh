@@ -1,1 +1,1 @@
-SECRET_KEY = 'h4TvVu03'
+ export SECRET_KEY=h4TvVu03

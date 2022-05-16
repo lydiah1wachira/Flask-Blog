@@ -6,10 +6,6 @@ from .forms import RegistrationForm,LoginForm
 from . import auth
 from .. import db
 
-@auth.route('/login')
-def login():
-    return render_template('auth/login.html')
-
 @auth.route('/register',methods = ["GET","POST"])
 def register():
     form = RegistrationForm()
