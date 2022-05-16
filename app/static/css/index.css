@@ -3,5 +3,18 @@
   font-weight: 500;
   color: rgb(14, 33, 54);
   text-align: center;
+}
 
+.heading2{
+  font-size: 300%;
+  text-align: center;
+  color: rgb(14, 33, 54);
+  font-weight: 500;
+}
+
+.index_text{
+  font-size: 150px;
+  text-align: center;
+  color: rgb(14, 33, 54);
+  font-weight: 500;
 }
