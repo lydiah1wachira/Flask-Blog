@@ -6,3 +6,12 @@ from flask_login import current_user
 class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you.',validators = [DataRequired()])
     submit = SubmitField('Submit')
+
+class CommentForm(FlaskForm):
+    '''
+    Form class for the comments on blogs.
+    '''
+    
+    comment = TextAreaField('Add a comment', validators = [DataRequired()])
+
+    submit = SubmitField('submit')
