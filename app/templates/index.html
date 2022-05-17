@@ -6,16 +6,29 @@
 {% endblock %}
 
 {% block content %}
+<style>
+  body {
+  background-image: url('https://images.pexels.com/photos/5484257/pexels-photo-5484257.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+ 
+  }
+   
+</style>
+
   <div class="container-fluid" id="index-page">
     <div class="row">
-      <h1 class="heading1">DIGITAL DIALOGUE </h1>
+      <h1 style="color:rgb(212, 247, 247); font-size:500%; font-weight: 600; text-align: center;padding-top: 5%;">DIGITAL DIALOGUE</h1>    
 
- 
-    <div class="row" id="about">
-      <h2 class="heading2">ABOUT US</h2>
-      <P class="index_text">Digital Dialogue is a Blog that brings you content about different things, you can interact with different people with shared interests, get notifications on new blogs that you follow and comment on blogs to give feedback.</P>
-      <p class="index_text"> You can even create blogs and update them.</p>
+  </div>
+  <div class="row"  style="padding-top:3%;">
+    <div class="col-md-3"></div>
+    <div class="col-md-6" style="background-color: rgba(41, 8, 8, 0.5); color:rgb(212, 236, 232); text-align: center;" >
+      <h2 style="font-size:300%; font-weight:600;">ABOUT US</h2>
+      <p style="font-size:200%"> <strong>Digital Dialogue</strong> is  Blogging app that contains different categories of articles, based on the user's preferences.</p>  
     </div>
+    <div class="col-md-3"></div>
+   
   </div>
 
 {% endblock %}

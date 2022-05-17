@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..requests import get_quote
 from flask_login import login_required
-from ..models import User
+from ..models import Blog, User
 from .forms import UpdateProfile
 from .. import db,photos
 
@@ -20,9 +20,11 @@ def index():
 @login_required
 def new_blog():
   quote = get_quote()
+  blogs = Blog.query.order_by(Blog.posted_on.desc())
   title = 'Blogs'
 
-  return render_template('blogs.html', title= title, quote = quote )
+
+  return render_template('blogs.html', title= title, quote = quote, blogs=blogs )
 
 @main.route('/user/<uname>')
 def profile(uname):
