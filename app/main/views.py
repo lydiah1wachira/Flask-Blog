@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,abort,flash
 from . import main
 from ..requests import get_quote
 from flask_login import login_required,current_user
-from ..models import Blog, User,Quote,Comment
+from ..models import Blog, User,Quote,Comment, Subscribers
 from .forms import UpdateProfile,CommentForm,AddBlog
 from .. import db,photos
 
@@ -97,6 +97,26 @@ def new_blog():
     return render_template('new_blog.html',form=form, title = title)
 
 
+@main.route('/blog/<blog_id>/update', methods = ['GET','POST'])
+@login_required
+def updateblog(blog_id):
+    blog = Blog.query.get(blog_id)
+    if blog.user != current_user:
+        abort(403)
+    form = AddBlog()
+    if form.validate_on_submit():
+        blog.title = form.title.data
+        blog.content = form.content.data
+        db.session.commit()
+       
+        return redirect(url_for('main.blogs',id = blog.id)) 
+    if request.method == 'GET':
+        form.title.data = blog.title
+        form.content.data = blog.content
+    return render_template('new_blog.html', form = form)
+
+
+
 
 @main.route('/view_comments/<id>')
 @login_required
@@ -121,11 +141,23 @@ def new_comment(blog_id):
         db.session.commit()
         
 
-        return redirect(url_for('.view_comments', id= blog.id))
+        return redirect(url_for('comments', id= blog.id))
 
     
     return render_template('new_comment.html', form = form,blog = blog,title=title  )
 
 
-
+@main.route('/blog/<blog_id>/delete', methods = ['POST'])
+@login_required
+def delete_post(blog_id):
+    '''
+    View function to delete blogs
+    '''
+    blog = Blog.query.get(blog_id)
+    if blog.user != current_user:
+        abort(403)
+    db.session.delete(blog)
+    db.session.commit()
+    
+    return redirect(url_for('main.blogs'))  
 
