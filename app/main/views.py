@@ -3,7 +3,7 @@ from . import main
 from ..requests import get_quote
 from flask_login import login_required,current_user
 from ..models import Blog, User,Quote,Comment
-from .forms import UpdateProfile,CommentForm
+from .forms import UpdateProfile,CommentForm,AddBlog
 from .. import db,photos
 
 
@@ -74,6 +74,28 @@ def blogs():
     title='Blogs'
 
     return render_template('blogs.html', blogs = blogs, title= title, quote = quote)
+
+
+@main.route('/blogs/new', methods = ['GET','POST'])
+@login_required
+def new_blog():
+    '''
+    View function to create a new blog
+    '''
+    title = 'New | Blog '
+    form = AddBlog()
+    
+    if form.validate_on_submit():
+        blog = Blog(title=form.title.data, content=form.content.data,user=current_user)
+       
+        db.session.add(blog)
+        db.session.commit()
+        
+        return redirect(url_for('main.blogs'))
+        
+    
+    return render_template('new_blog.html',form=form, title = title)
+
 
 
     
