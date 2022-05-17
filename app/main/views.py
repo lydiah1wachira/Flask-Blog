@@ -1,7 +1,7 @@
-from flask import render_template,request,redirect,url_for,abort
+from flask import render_template,request,redirect,url_for,abort,flash
 from . import main
 from ..requests import get_quote
-from flask_login import login_required
+from flask_login import login_required,current_user
 from ..models import Blog, User
 from .forms import UpdateProfile
 from .. import db,photos
@@ -16,15 +16,7 @@ def index():
 
   return render_template('index.html', title = title)
 
-@main.route('/blogs')
-@login_required
-def new_blog():
-  quote = get_quote()
-  blogs = Blog.query.order_by(Blog.posted_on.desc())
-  title = 'Blogs'
 
-
-  return render_template('blogs.html', title= title, quote = quote, blogs=blogs )
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -67,3 +59,25 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+
+@main.route('/blogs')
+@login_required
+def blogs():
+    '''
+    View function that returns the page containing the blogs and its data.
+    '''
+    quote = get_quote()
+
+    blogs = Blog.query.order_by(Blog.posted_on.desc())
+
+    title='Blogs'
+
+    return render_template('blogs.html', blogs = blogs, title= title, quote = quote)
+
+
+    
+
+
+
+
