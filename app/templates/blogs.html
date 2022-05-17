@@ -1,35 +1,37 @@
 {% extends 'base.html'%}
 
  {% block content %}
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-      <h3>Quote of the Day!</h3>
-      <p>"{{quote.quote}}</p>
-      <p><cite>{{quote.author}}</cite></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <h2>BLOGS</h2>
-    {% for blog in blogs %}
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-        {{blog.title}}
-        </div>
-        <div class="card-body">
-          <blockquote class="blockquote mb-0">
-            <p>{{ blog.content}}</p>
-            <footer class="blockquote-footer">
-              <cite title="Source Title">{{ blog.user.username }}</cite>cite>
-              <small>{{ blog.posted_on.strftime('%d-%m-%Y') }}</small>
-            </footer>
-          </blockquote>
-        </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <h3>Quote of the Day!</h3>
+        <p>"{{quote.quote}}</p>
+        <p><cite> {{quote.author}} </cite></p>
       </div>
     </div>
-    {% endfor %}
+
+    <div class="row">
+      <h2>BLOGS</h2>
+      {% for blog in blogs %}
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+          {{blog.title}}
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>{{ blog.content}}</p>
+              <footer class="blockquote-footer">
+                <cite title="Source Title"> By: {{ blog.user.username }}</cite>
+                <small> Posted on: {{ blog.posted_on.strftime('%d-%m-%Y') }}</small>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 
 {% endblock%}

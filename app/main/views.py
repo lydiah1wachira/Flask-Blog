@@ -98,7 +98,15 @@ def new_blog():
 
 
 
-    
+@main.route('/view_comments/<id>')
+@login_required
+def view_comments(id):
+    comment = Comment.get_comments(id)
+    title = 'View Comments'
+    return render_template('comment.html', comment=comment, title=title)
+
+
+
 @main.route('/comment/new/<int:blog_id>', methods = ['GET','POST'])
 @login_required
 def new_comment(blog_id):
@@ -118,13 +126,6 @@ def new_comment(blog_id):
     
     return render_template('new_comment.html', form = form,blog = blog,title=title  )
 
-
-@main.route('/view_comments/<id>')
-@login_required
-def view_comments(id):
-    comment = Comment.get_comments(id)
-    title = 'View Comments'
-    return render_template('comment.html', comment=comment, title=title)
 
 
 

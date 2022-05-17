@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 comment">
+          <h2 class="text-center" style=" font-family: 'Poppins', sans-serif;">Comments</h2>
+          {% for comment in comment %}
+            <h3 class="" style="font-size:1.5rem; font-family: 'Poppins', sans-serif; ">{{comment.comment}} <span  style="font-size: 1.3rem; font-weight: lighter;" class="">Posted
+            By:{{comment.user.username}}</span></h3>
+            
+          {% endfor %}     
+      </div>
+      <div clas="col-md-3"> </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
