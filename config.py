@@ -1,11 +1,14 @@
 import os
 
+
+
+
 class Config:
     '''
     General configuration parent class
     '''
     SECRET_KEY = 'h4TvVu03'
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wachira:Lydiah007@localhost/blogs'
+    DATABASE_URL = 'postgresql+psycopg2://wachira:Lydiah007@localhost/blogs'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
     SQLALCHEMY_TRACK_MODIFICATIONS=True
 
@@ -30,9 +33,8 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
-
-
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+DEBUG = True
 
 
 class DevConfig(Config):
